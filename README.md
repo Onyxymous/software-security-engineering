@@ -1,2 +1,2 @@
 # software-security-engineering
-Repo for CS 4401 at WPI
+Repo for Aidan Wech's binary exploitations for Software Security Engineering
