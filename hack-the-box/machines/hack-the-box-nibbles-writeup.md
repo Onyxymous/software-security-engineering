@@ -91,7 +91,9 @@ We learn that Nibbleblog is using `v4.0.3`. Let's check out `admin.php`:
   <img width="640" alt="image" src="https://github.com/user-attachments/assets/e0bcbb93-2a29-4c94-b222-a6c12e2f98c0" />
 </p>
 
-Searching for Nibbleblog exploits on [ExxploitDB](https://www.exploit-db.com/) led me to discover CVE 2015-6967, an arbitrary file upload vulnerability for Nibbleblog v4.0.3. This may come in handy later.
+This looks like where we need to guess our password.
+
+Searching for Nibbleblog exploits on [ExploitDB](https://www.exploit-db.com/) led me to discover CVE 2015-6967, an arbitrary file upload vulnerability for Nibbleblog v4.0.3. This may come in handy later.
 
 Finally, let's look through the `content` directory. This directory contains a `private` directory that holds a `users.xml` file:
 
