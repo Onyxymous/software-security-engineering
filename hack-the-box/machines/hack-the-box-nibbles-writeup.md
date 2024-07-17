@@ -13,7 +13,7 @@
 
 ---
 
-### Enuration
+### Enumeration
 Using `nmap`, we are able to discover the following services:
 
 ```bash
