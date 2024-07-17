@@ -114,19 +114,19 @@ We now know that `admin` is a valid username. After guessing a couple of attempt
 ---
 
 ### Initial Access
-The exploit says that arbitrary PHP code can be uploaded via the "My Images" plugin. I created a PHP file, `funimage`, that spawns a reverse shell on my machine at port 1234 using pentestmonkey's [php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php). Let's upload it!
+The exploit says that arbitrary PHP code can be uploaded via the "My Images" plugin. I created a PHP file, `funimage`, that spawns a reverse shell on my machine at port 1234 using pentestmonkey's [php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php). Let's upload the image and see what happens.
 
 <p align="center">
   <img width="640" alt="image" src="https://github.com/user-attachments/assets/5a254932-1da1-40d2-9e0b-3e7b342650b4" />
 </p>
 
-A lot of arnings popped up, but maybe the file is there somewhere. Let's go check in the `config` directory:
+A lot of warnings popped up, but maybe the file is there somewhere. Let's go check in the `config` directory:
 
 <p align="center">
   <img width="640" alt="image" src="https://github.com/user-attachments/assets/4c1e1d78-54ad-41c6-82af-ff0eee75eeea" />
 </p>
 
-Sure enough it worked! Let's set up a listener:
+Sure enough it worked. Let's set up a listener:
 
 ```bash
 nc -vlnp 1234
@@ -191,7 +191,7 @@ drwxr-xr-x 3 nibbler nibbler 4096 Dec 10  2017 ..
 -rwxrwxrwx 1 nibbler nibbler 4015 May  8  2015 monitor.sh
 ```
 
-We can see that it contains a bash script, `monitor.sh`. While I do not really understand what the script is doing (it is a lot, trust me), what caught my eye were the permissions given to the script. Everyone has read, write, and execute permissions. 
+We can see that it contains a bash script, `monitor.sh`. While I do not really understand what the script is doing, what caught my eye were the permissions given to the script. Everyone has read, write, and execute permissions. 
 
 I had a feeling that I knew where this this is going. Sure enough, when I typed in `sudo -l`:
 
@@ -206,7 +206,7 @@ User nibbler may run the following commands on Nibbles:
     (root) NOPASSWD: /home/nibbler/personal/stuff/monitor.sh
 ```
 
-`root` has the ability to run `monitor.sh` without needing to type in a password. Given the permissions `monitor.sh` has, we can execute arbitrary bash commands as `root`.
+I saw that `root` has the ability to run `monitor.sh` without needing to type in a password. Given the permissions `monitor.sh` has, we can execute arbitrary bash commands as `root`.
 
 ```
 nibbler@Nibbles:/home/nibbler$ echo "whoami" > /home/nibbler/personal/stuff/monitor.sh
